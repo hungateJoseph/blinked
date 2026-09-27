@@ -2,7 +2,7 @@
  * POST /api/assistant/skills/assess  { brief, skillsOn }
  *
  * The photographer's brief — everything they wrote to add to or change their
- * assistant — is split into items by Claude and each is checked against the
+ * assistant — is split into items by the model and each is checked against the
  * fixed list of what the assistant can and cannot do. Nothing is saved here:
  * the browser shows the result and stores it with the configuration, tied to
  * the exact text it was made for.

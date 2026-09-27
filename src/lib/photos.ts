@@ -101,7 +101,7 @@ export async function deletePhotoFile(photo: PhotoRow): Promise<void> {
 }
 
 /**
- * Make a version of the photo suitable to send to Claude: rotated the right
+ * Make a version of the photo suitable to send to the model: rotated the right
  * way up (using the EXIF orientation), at most 1600px on the long side, and
  * JPEG-encoded. That keeps requests small and well under API image limits.
  */
@@ -121,7 +121,7 @@ export async function prepareForAi(
  *
  * The Laplacian responds to edges. A sharp image has many strong edges, so
  * the values vary a lot (high variance); a blurry image has soft edges and a
- * low variance. This works with no AI at all and is also passed to Claude as
+ * low variance. This works with no AI at all and is also passed to the model as
  * a hint. Typical values: below ~50 is usually blurry, above ~150 is usually
  * sharp — but it depends on the subject, so treat it as a hint, not a verdict.
  */
@@ -156,7 +156,7 @@ export async function measureSharpness(original: Buffer): Promise<number> {
   return Math.round(variance * 10) / 10;
 }
 
-/** Put the sharpness number into words for the UI and for Claude. */
+/** Put the sharpness number into words for the UI and for the model. */
 export function describeSharpness(score: number): "likely blurry" | "a little soft" | "sharp" {
   if (score < 50) return "likely blurry";
   if (score < 150) return "a little soft";

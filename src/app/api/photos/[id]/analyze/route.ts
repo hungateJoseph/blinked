@@ -1,7 +1,7 @@
 /**
  * POST /api/photos/:id/analyze — run the AI Image Cleanup scan.
  *
- * Always measures sharpness locally. With an API key, Claude then looks at the
+ * Always measures sharpness locally. With an API key, the model then looks at the
  * photo for irregularities and writes the follow-up questions; without one, a
  * smaller local-only analysis is returned instead.
  */

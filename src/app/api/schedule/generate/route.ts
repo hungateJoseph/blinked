@@ -3,7 +3,7 @@
  *
  * Builds a proposed availability schedule from the photographer's booked
  * dates and preferences, saves it as a draft, and returns it for review.
- * Uses Claude when an API key is configured, otherwise the rule-based
+ * Uses the model when an API key is configured, otherwise the rule-based
  * generator — the response shape is identical either way.
  */
 import { NextResponse } from "next/server";

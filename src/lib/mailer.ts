@@ -116,10 +116,11 @@ See it in Blinked: /messages`;
 }
 
 /**
- * Where workflow requests that need a person or the developers are sent.
- * During the beta that is one inbox.
+ * Where workflow requests that need a person or the developers are sent:
+ * one inbox during the beta, set with TEAM_EMAIL. Without it, requests are
+ * logged on the server rather than emailed.
  */
-export const TEAM_EMAIL = process.env.TEAM_EMAIL || "jbabyjbaby1@gmail.com";
+export const TEAM_EMAIL = process.env.TEAM_EMAIL || "";
 
 /**
  * Send the steps of a workflow that a person or the developers have to
@@ -142,8 +143,9 @@ export async function sendTeamRequest(input: {
   );
 
   const apiKey = process.env.RESEND_API_KEY;
-  if (!apiKey) {
-    console.log(`[team] Request from ${who} (would go to ${TEAM_EMAIL}):\n${input.description}\n${lines.join("\n")}`);
+  if (!apiKey || !TEAM_EMAIL) {
+    const to = TEAM_EMAIL || "the team inbox (TEAM_EMAIL is not set)";
+    console.log(`[team] Request from ${who} (would go to ${to}):\n${input.description}\n${lines.join("\n")}`);
     return { delivery: "console", to: TEAM_EMAIL };
   }
 

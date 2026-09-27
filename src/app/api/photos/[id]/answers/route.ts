@@ -2,7 +2,7 @@
  * POST /api/photos/:id/answers  { answers: { [questionId]: "answer" } }
  *
  * The photographer has answered the follow-up questions from the scan. Store
- * the answers and produce the cleanup plan (Claude, or the local fallback).
+ * the answers and produce the cleanup plan (the model, or the local fallback).
  */
 import { NextResponse } from "next/server";
 import { AiError, isAiConfigured, planCleanupWithAi } from "@/lib/ai";
@@ -36,7 +36,7 @@ export async function POST(request: Request, { params }: { params: Promise<{ id:
   const answers = parseAnswers(body.answers);
 
   try {
-    // Claude can plan from any analysis, including one the local check
+    // The model can plan from any analysis, including one the local check
     // produced, so this depends only on whether a key is configured right now.
     let plan;
     if (isAiConfigured()) {

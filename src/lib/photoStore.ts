@@ -226,7 +226,7 @@ export function saveAnswersAndPlan(
 
 /**
  * An analysis built only from the local sharpness metric. It deliberately
- * mirrors the shape Claude returns so the UI works identically either way.
+ * mirrors the shape the model returns so the UI works identically either way.
  */
 export function buildLocalAnalysis(sharpness: number): PhotoAnalysis {
   const label = describeSharpness(sharpness);

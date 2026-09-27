@@ -45,9 +45,11 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
               <Link href="/login" className="hover:text-stone-900">
                 Sign in
               </Link>
-              <a href="mailto:jbabyjbaby1@gmail.com" className="hover:text-stone-900">
-                Contact
-              </a>
+              {process.env.TEAM_EMAIL && (
+                <a href={`mailto:${process.env.TEAM_EMAIL}`} className="hover:text-stone-900">
+                  Contact
+                </a>
+              )}
             </span>
           </div>
         </footer>

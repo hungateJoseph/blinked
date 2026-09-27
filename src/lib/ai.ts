@@ -1,9 +1,9 @@
 /**
- * Everything that talks to Claude lives in this file, so the rest of the app
+ * Everything that talks to the model lives in this file, so the rest of the app
  * never touches the Anthropic SDK directly. Each function:
  *
  *   1. takes plain data in,
- *   2. asks Claude for a *structured* answer (validated against a schema), and
+ *   2. asks the model for a *structured* answer (validated against a schema), and
  *   3. returns typed data — or throws an `AiError` with a friendly message.
  *
  * When ANTHROPIC_API_KEY is not set, `isAiConfigured()` is false and callers
@@ -50,7 +50,7 @@ import { normalizeSlots } from "./schedule";
 /** The model used for every request — change it in one place if needed. */
 export const MODEL = "claude-opus-5";
 
-/** A problem talking to Claude, with a message safe to show to the user. */
+/** A problem talking to the model, with a message safe to show to the user. */
 export class AiError extends Error {}
 
 export function isAiConfigured(): boolean {
@@ -127,7 +127,7 @@ Rules:
   silently.
 - Keep every reason short (under 12 words). The summary is 1–3 plain sentences.`;
 
-/** Ask Claude for a schedule proposal. Returns the same shape as the rule-based generator. */
+/** Ask the model for a schedule proposal. Returns the same shape as the rule-based generator. */
 export async function generateScheduleWithAi(input: {
   bookings: BookingInput[];
   preferences: SchedulePreferences;
@@ -251,7 +251,7 @@ Guidelines:
 - If the photo looks clean, return no issues and at most one general question.
 - You will also receive a local sharpness measurement. Use it only as a hint; trust your eyes.`;
 
-/** Ask Claude to look at one photo and list what it would fix, plus questions for the photographer. */
+/** Ask the model to look at one photo and list what it would fix, plus questions for the photographer. */
 export async function analyzePhotoWithAi(input: {
   imageBase64: string;
   mediaType: "image/jpeg";
@@ -509,7 +509,7 @@ assistant CAN and CANNOT do. Split the brief into its distinct requests and judg
 - A plain instruction like "clients call me Jo" is one feasible item. An empty or meaningless
   brief gives an empty list. Keep everything short.`;
 
-/** Ask Claude to split the photographer's brief into items and check each against CAPABILITIES. */
+/** Ask the model to split the photographer's brief into items and check each against CAPABILITIES. */
 export async function understandBriefWithAi(input: {
   brief: string;
   skillsOn: string[];
@@ -941,7 +941,7 @@ export async function estimateWorkflowWithAi(input: {
   };
 }
 
-/** Ask Claude for an edit plan, given the earlier analysis and the photographer's answers. */
+/** Ask the model for an edit plan, given the earlier analysis and the photographer's answers. */
 export async function planCleanupWithAi(input: {
   imageBase64: string;
   mediaType: "image/jpeg";

@@ -516,10 +516,11 @@ test("workflow: the model's output is read tolerantly — names become ids, oddi
 });
 
 test("dev tiers: the cost readout, the countdown factor, and the code gate", async () => {
-  const { usageCost, addUsage, estimatedSeconds, TIER_INFO, ANALYSIS_TIERS } = catalog;
+  const { usageCost, addUsage, estimatedSeconds, TIER_INFO, ANALYSIS_TIERS, MODEL_PRICES } = catalog;
   const { isValidDevCode, resolveTier, devCodeConfigured } = await import("@/lib/assistant/devAccess");
-  assert.equal(usageCost("claude-haiku-4-5-20251001", 1_000_000, 0, 0), 1, "a million input tokens at list price");
-  assert.equal(usageCost("claude-haiku-4-5-20251001", 0, 0, 3), 0.03, "a cent a search");
+  const [cheapest] = Object.entries(MODEL_PRICES).sort((a, b) => a[1].input - b[1].input)[0];
+  assert.equal(usageCost(cheapest, 1_000_000, 0, 0), MODEL_PRICES[cheapest].input, "a million input tokens at list price");
+  assert.equal(usageCost(cheapest, 0, 0, 3), 0.03, "a cent a search");
   const sum = addUsage(
     { tier: "standard", model: "m", inputTokens: 1, outputTokens: 2, searches: 1, costUsd: 0.01, chargedCents: 1 },
     { tier: "standard", model: "m", inputTokens: 3, outputTokens: 4, searches: 0, costUsd: 0.02, chargedCents: 2 },

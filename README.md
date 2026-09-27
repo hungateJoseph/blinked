@@ -168,7 +168,7 @@ src/
 
 Design notes:
 
-- Every AI call in `lib/ai.ts` asks the model (`claude-opus-5`) for JSON that matches a Zod schema, so
+- Every AI call in `lib/ai.ts` asks the model (its id is set once, at the top of `lib/ai.ts`) for JSON that matches a Zod schema, so
   the rest of the app works with typed data and never parses free text.
 - The AI and rule-based generators return the same `ScheduleDraft` shape; the UI does not know
   which one ran (it just shows a "drafted by AI" or "rule-based draft" badge).

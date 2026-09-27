@@ -31,6 +31,8 @@ services:
         sync: false
       - key: EMAIL_FROM # e.g. "Blinked <signin@yourdomain.com>"
         sync: false
+      - key: TEAM_EMAIL # the inbox for team requests and the site's Contact link
+        sync: false
       - key: ANALYSIS_DEV_CODE # unlocks the bigger analysis models; see .env.example
         sync: false
       - key: STRIPE_SECRET_KEY # prepaid analysis credit; see DEPLOY.md

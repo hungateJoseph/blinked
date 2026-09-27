@@ -2,7 +2,7 @@
  * The automatic touch-up: what happens when a photo is sent to the assistant.
  *
  * It is the same pipeline the AI Image Cleanup tool runs — local sharpness
- * check, Claude's scan, a plan, apply — but with no questions asked, because
+ * check, the model's scan, a plan, apply — but with no questions asked, because
  * the photographer is at a wedding and wants the picture back, not a
  * questionnaire. The plan makes sensible assumptions and says what they were.
  *

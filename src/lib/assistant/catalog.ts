@@ -1072,19 +1072,19 @@ export type AnalysisTier = (typeof ANALYSIS_TIERS)[number];
 export const TIER_INFO: Record<AnalysisTier, { label: string; model: string; hint: string; approx: string }> = {
   standard: {
     label: "Standard",
-    model: "Haiku 4.5",
+    model: "the fast model",
     hint: "Cheapest. The step breakdown can vary from run to run.",
     approx: "1–4¢",
   },
   balanced: {
     label: "Balanced",
-    model: "Sonnet 5",
+    model: "the mid-size model",
     hint: "Steadier breakdowns and pricing; a few cents.",
     approx: "5–10¢",
   },
   thorough: {
     label: "Thorough",
-    model: "Opus 5, thinking",
+    model: "the largest model, with extended thinking",
     hint: "Best judgement on hard requests; slower.",
     approx: "20–40¢",
   },
