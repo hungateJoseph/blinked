@@ -1,0 +1,26 @@
+# Keep the build context small and never copy secrets or local state into the
+# image. Anything listed here is invisible to the Docker build.
+node_modules
+.next
+out
+
+# Local runtime state — production uses the mounted disk instead.
+data
+uploads
+
+# Secrets
+.env
+.env.local
+.env.*.local
+client_secret_*.json
+*-credentials.json
+service-account*.json
+
+# Repo and editor noise
+.git
+.gitignore
+.DS_Store
+*.log
+tsconfig.tsbuildinfo
+README.md
+DEPLOY.md

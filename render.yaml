@@ -1,0 +1,56 @@
+# Render deployment config ("Blueprint"). Keeping this in the repo means the
+# service is defined in code and reviewable, instead of clicked into a dashboard.
+#
+# Render reads this when you create a Blueprint from the repository. Secrets are
+# deliberately NOT here: each one below is marked `sync: false`, which makes
+# Render prompt for the value and store it encrypted.
+
+services:
+  - type: web
+    name: blinked
+    runtime: docker
+    dockerfilePath: ./Dockerfile
+    plan: starter # required for a persistent disk; the free plan has none
+    region: oregon # change to frankfurt/singapore/ohio if closer to you
+    healthCheckPath: /login # a page that renders without being signed in
+
+    # The database and uploaded photos live here. Without a disk, every deploy
+    # would start from an empty database and lose every photo.
+    disk:
+      name: blinked-data
+      mountPath: /var/data
+      sizeGB: 5
+
+    envVars:
+      # --- Secrets: Render prompts for these and stores them encrypted --------
+      - key: ANTHROPIC_API_KEY
+        sync: false
+      - key: GOOGLE_CLIENT_ID
+        sync: false
+      - key: RESEND_API_KEY
+        sync: false
+      - key: EMAIL_FROM # e.g. "Blinked <signin@yourdomain.com>"
+        sync: false
+      - key: ANALYSIS_DEV_CODE # unlocks the bigger analysis models; see .env.example
+        sync: false
+      - key: STRIPE_SECRET_KEY # prepaid analysis credit; see DEPLOY.md
+        sync: false
+      - key: STRIPE_WEBHOOK_SECRET
+        sync: false
+      - key: TWILIO_ACCOUNT_SID # texting the Smart Photographer; see DEPLOY.md
+        sync: false
+      - key: TWILIO_AUTH_TOKEN
+        sync: false
+      - key: TWILIO_FROM_NUMBER # E.164, e.g. +15551234567
+        sync: false
+
+      # --- Generated once by Render, then kept stable ------------------------
+      # Changing this signs everybody out, so let Render own it.
+      - key: SESSION_SECRET
+        generateValue: true
+
+      # --- Fixed values ------------------------------------------------------
+      - key: DATA_DIR
+        value: /var/data/db
+      - key: UPLOAD_DIR
+        value: /var/data/uploads

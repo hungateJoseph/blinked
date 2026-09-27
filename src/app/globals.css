@@ -1,0 +1,112 @@
+/* Tailwind v4: one import brings in the whole utility set. */
+@import "tailwindcss";
+
+/*
+ * The look. Warm paper neutrals in place of grey, one deep teal accent, a
+ * serif for headings and a mono for numbers and labels. The stone and rose
+ * scales are redefined here so every page picks the palette up without each
+ * component being touched: "stone" is paper, "rose" is the accent.
+ */
+@theme {
+  --font-sans: var(--font-plex), ui-sans-serif, system-ui, sans-serif;
+  --font-display: var(--font-fraunces), Georgia, "Times New Roman", serif;
+  --font-mono: var(--font-plex-mono), ui-monospace, SFMono-Regular, Menlo, monospace;
+
+  --color-stone-50: #f7f5f0;
+  --color-stone-100: #efece4;
+  --color-stone-200: #e1ddd2;
+  --color-stone-300: #cfc9bb;
+  --color-stone-400: #a9a294;
+  --color-stone-500: #857e70;
+  --color-stone-600: #625c50;
+  --color-stone-700: #46413a;
+  --color-stone-800: #2c2924;
+  --color-stone-900: #171512;
+
+  --color-rose-50: #e9f1ef;
+  --color-rose-100: #d7e7e3;
+  --color-rose-200: #b8d3cd;
+  --color-rose-300: #8fb8b0;
+  --color-rose-500: #2f7168;
+  --color-rose-600: #1f5c56;
+  --color-rose-700: #17473f;
+  --color-rose-800: #113630;
+
+  --color-paper: #f7f5f0;
+  --color-surface: #fdfcfa;
+  --color-ink: #171512;
+  --color-line: #e1ddd2;
+  --color-signal: #d9541e;
+  --color-signal-soft: #f8e4d9;
+}
+
+:root {
+  color-scheme: light;
+}
+
+body {
+  @apply bg-stone-50 text-stone-900 antialiased;
+  font-family: var(--font-sans);
+}
+
+h1,
+h2,
+h3 {
+  font-family: var(--font-display);
+  font-weight: 500;
+  letter-spacing: -0.01em;
+}
+
+/* Reusable component classes. Keeping them here (instead of repeating long
+   utility strings in JSX) makes the pages easier to read. */
+.card {
+  @apply rounded-md border border-stone-200 bg-surface p-6;
+}
+
+/* `@utility` (rather than a plain `.btn` rule) lets the two button styles
+   below build on it with @apply — Tailwind v4 only applies real utilities. */
+@utility btn {
+  @apply inline-flex items-center justify-center gap-2 rounded-md px-4 py-2 text-sm font-medium
+    transition-colors disabled:cursor-not-allowed disabled:opacity-50;
+}
+
+.btn-primary {
+  @apply btn bg-stone-900 text-stone-50 hover:bg-stone-700;
+}
+
+.btn-secondary {
+  @apply btn border border-stone-300 bg-surface text-stone-800 hover:bg-stone-100;
+}
+
+.input {
+  @apply w-full rounded-md border border-stone-300 bg-surface px-3 py-2 text-sm
+    focus:border-rose-500 focus:outline-none focus:ring-2 focus:ring-rose-100;
+}
+
+.label {
+  @apply mb-1 block text-sm font-medium text-stone-700;
+}
+
+.badge {
+  @apply inline-block rounded px-1.5 py-0.5 font-mono text-[11px] font-medium leading-4;
+}
+
+/* Small mono labels above sections: "01 / Describe", "Beta", and so on. */
+.eyebrow {
+  @apply font-mono text-[11px] uppercase tracking-[0.14em] text-stone-500;
+}
+
+/* The sliding stripe used by <ProgressBar indeterminate /> while we wait on
+   something whose length we cannot predict (an AI request, for example). */
+@keyframes indeterminate-slide {
+  from {
+    transform: translateX(-100%);
+  }
+  to {
+    transform: translateX(300%);
+  }
+}
+
+.animate-indeterminate {
+  animation: indeterminate-slide 1.4s ease-in-out infinite;
+}

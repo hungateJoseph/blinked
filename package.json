@@ -1,0 +1,35 @@
+{
+  "name": "blinked",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Beta web app for wedding photographers: scheduling, photo management and AI image cleanup.",
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@anthropic-ai/sdk": "^0.125.0",
+    "@vladmandic/face-api": "^1.7.15",
+    "better-sqlite3": "^13.0.3",
+    "google-auth-library": "^11.0.2",
+    "jose": "^6.2.12",
+    "next": "^16.3.5",
+    "react": "^19.3.0",
+    "react-dom": "^19.3.0",
+    "sharp": "^0.35.4",
+    "stripe": "^22.6.2",
+    "zod": "^4.6.2"
+  },
+  "devDependencies": {
+    "@tailwindcss/postcss": "^4.3.3",
+    "@types/better-sqlite3": "^9.6.0",
+    "@types/node": "^22.20.2",
+    "@types/react": "^19.3.0",
+    "@types/react-dom": "^19.3.0",
+    "postcss": "^8.5.28",
+    "tailwindcss": "^4.3.3",
+    "typescript": "^5.9.3"
+  }
+}
