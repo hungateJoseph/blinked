@@ -88,6 +88,11 @@ npm run dev
 Open <http://localhost:3000>. The first run creates `data/app.db` (SQLite) and, on your first
 upload, an `uploads/` folder. Both are git-ignored.
 
+`npm test` runs the unit tests in `tests/` — the configuration, the system prompt, the tools and
+their confirmation gate, the store, the workflow report, tiers, billing, backends, recommendations,
+the agent and texting — against a throwaway database, with no model calls. Node runs the app's
+TypeScript directly; nothing is compiled first.
+
 ## Configuration (`.env.local`)
 
 | Variable                       | Needed for                   | Without it                                                                                  |
