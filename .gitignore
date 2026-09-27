@@ -36,3 +36,6 @@ service-account*.json
 
 # Personal notes kept next to the project
 further ideas.txt
+
+# Screenshots dropped into the project folder
+/Screenshot*.png
