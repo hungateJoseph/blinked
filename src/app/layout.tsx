@@ -1,20 +1,20 @@
 import type { Metadata } from "next";
-import { Fraunces, IBM_Plex_Mono, IBM_Plex_Sans } from "next/font/google";
+import { IBM_Plex_Mono, Inter, Plus_Jakarta_Sans } from "next/font/google";
 import Link from "next/link";
 import Nav from "@/components/Nav";
 import "./globals.css";
 
-const fraunces = Fraunces({
+const jakarta = Plus_Jakarta_Sans({
   subsets: ["latin"],
-  style: ["normal", "italic"],
-  variable: "--font-fraunces",
+  weight: ["600", "700", "800"],
+  variable: "--font-jakarta",
   display: "swap",
 });
 
-const plexSans = IBM_Plex_Sans({
+const inter = Inter({
   subsets: ["latin"],
   weight: ["400", "500", "600"],
-  variable: "--font-plex",
+  variable: "--font-inter",
   display: "swap",
 });
 
@@ -28,20 +28,20 @@ const plexMono = IBM_Plex_Mono({
 export const metadata: Metadata = {
   title: "Blinked",
   description:
-    "Describe a job in plain words, get a plan with who does each step, what it costs and how long, then hand it to an agent. Built for photographers first.",
+    "Describe a job in plain words, get a plan with who does each step, what it costs and how long, then hand it to an agent that runs on Amazon, Instacart, AWS, Fiverr, TaskRabbit and SMS.",
 };
 
 /** The frame around every page: navigation bar on top, content below, a short footer. */
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" className={`${fraunces.variable} ${plexSans.variable} ${plexMono.variable}`}>
+    <html lang="en" className={`${jakarta.variable} ${inter.variable} ${plexMono.variable}`}>
       <body className="flex min-h-screen flex-col">
         <Nav />
-        <main className="mx-auto w-full max-w-5xl flex-1 px-4 py-8">{children}</main>
-        <footer className="border-t border-stone-200">
-          <div className="mx-auto flex max-w-5xl flex-wrap items-center justify-between gap-3 px-4 py-5 text-xs text-stone-500">
-            <span className="font-mono">Blinked · beta · built for photographers first</span>
-            <span className="flex gap-4">
+        <main className="mx-auto w-full max-w-6xl flex-1 px-4 py-8 sm:px-6">{children}</main>
+        <footer className="border-t border-stone-200 bg-surface">
+          <div className="mx-auto flex max-w-6xl flex-wrap items-center justify-between gap-3 px-4 py-6 text-sm text-stone-500 sm:px-6">
+            <span>Blinked · beta · built for photographers first</span>
+            <span className="flex gap-5">
               <Link href="/login" className="hover:text-stone-900">
                 Sign in
               </Link>

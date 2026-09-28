@@ -13,7 +13,7 @@ export function Mark({ size = 24, className = "" }: { size?: number; className?:
       className={className}
     >
       <circle cx="16" cy="16" r="12.5" stroke="currentColor" strokeWidth="2.5" />
-      <path d="M5.2 18.5 A 11.5 11.5 0 0 0 26.8 18.5 Z" fill="#1f5c56" />
+      <path d="M5.2 18.5 A 11.5 11.5 0 0 0 26.8 18.5 Z" fill="#4f46e5" />
       <path d="M4 16 H 28" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" />
     </svg>
   );
@@ -24,7 +24,7 @@ export default function Logo({ size = 24 }: { size?: number }) {
   return (
     <span className="inline-flex items-center gap-2 text-stone-900">
       <Mark size={size} />
-      <span className="font-display text-xl font-medium tracking-tight">Blinked</span>
+      <span className="font-display text-xl font-bold tracking-tight">Blinked</span>
     </span>
   );
 }

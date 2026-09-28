@@ -2,42 +2,45 @@
 @import "tailwindcss";
 
 /*
- * The look. Warm paper neutrals in place of grey, one deep teal accent, a
- * serif for headings and a mono for numbers and labels. The stone and rose
- * scales are redefined here so every page picks the palette up without each
- * component being touched: "stone" is paper, "rose" is the accent.
+ * The look: a product, not a pamphlet. Cool neutrals, one saturated accent,
+ * a geometric sans for headings and a clean sans for everything else. The
+ * stone and rose scales are redefined here so every page picks the palette
+ * up without each component being touched: "stone" is the neutral ramp,
+ * "rose" is the accent.
  */
 @theme {
-  --font-sans: var(--font-plex), ui-sans-serif, system-ui, sans-serif;
-  --font-display: var(--font-fraunces), Georgia, "Times New Roman", serif;
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  --font-display: var(--font-jakarta), var(--font-inter), ui-sans-serif, system-ui, sans-serif;
   --font-mono: var(--font-plex-mono), ui-monospace, SFMono-Regular, Menlo, monospace;
 
-  --color-stone-50: #f7f5f0;
-  --color-stone-100: #efece4;
-  --color-stone-200: #e1ddd2;
-  --color-stone-300: #cfc9bb;
-  --color-stone-400: #a9a294;
-  --color-stone-500: #857e70;
-  --color-stone-600: #625c50;
-  --color-stone-700: #46413a;
-  --color-stone-800: #2c2924;
-  --color-stone-900: #171512;
+  --color-stone-50: #f8fafc;
+  --color-stone-100: #f1f5f9;
+  --color-stone-200: #e2e8f0;
+  --color-stone-300: #cbd5e1;
+  --color-stone-400: #94a3b8;
+  --color-stone-500: #64748b;
+  --color-stone-600: #475569;
+  --color-stone-700: #334155;
+  --color-stone-800: #1e293b;
+  --color-stone-900: #0f172a;
+  --color-stone-950: #020617;
 
-  --color-rose-50: #e9f1ef;
-  --color-rose-100: #d7e7e3;
-  --color-rose-200: #b8d3cd;
-  --color-rose-300: #8fb8b0;
-  --color-rose-500: #2f7168;
-  --color-rose-600: #1f5c56;
-  --color-rose-700: #17473f;
-  --color-rose-800: #113630;
+  --color-rose-50: #eef2ff;
+  --color-rose-100: #e0e7ff;
+  --color-rose-200: #c7d2fe;
+  --color-rose-300: #a5b4fc;
+  --color-rose-400: #818cf8;
+  --color-rose-500: #6366f1;
+  --color-rose-600: #4f46e5;
+  --color-rose-700: #4338ca;
+  --color-rose-800: #3730a3;
 
-  --color-paper: #f7f5f0;
-  --color-surface: #fdfcfa;
-  --color-ink: #171512;
-  --color-line: #e1ddd2;
-  --color-signal: #d9541e;
-  --color-signal-soft: #f8e4d9;
+  --color-paper: #f8fafc;
+  --color-surface: #ffffff;
+  --color-ink: #0f172a;
+  --color-line: #e2e8f0;
+  --color-signal: #d97706;
+  --color-signal-soft: #fef3c7;
 }
 
 :root {
@@ -53,25 +56,25 @@ h1,
 h2,
 h3 {
   font-family: var(--font-display);
-  font-weight: 500;
-  letter-spacing: -0.01em;
+  font-weight: 700;
+  letter-spacing: -0.02em;
 }
 
 /* Reusable component classes. Keeping them here (instead of repeating long
    utility strings in JSX) makes the pages easier to read. */
 .card {
-  @apply rounded-md border border-stone-200 bg-surface p-6;
+  @apply rounded-xl border border-stone-200 bg-surface p-6 shadow-sm;
 }
 
 /* `@utility` (rather than a plain `.btn` rule) lets the two button styles
    below build on it with @apply — Tailwind v4 only applies real utilities. */
 @utility btn {
-  @apply inline-flex items-center justify-center gap-2 rounded-md px-4 py-2 text-sm font-medium
+  @apply inline-flex items-center justify-center gap-2 rounded-lg px-4 py-2.5 text-sm font-semibold
     transition-colors disabled:cursor-not-allowed disabled:opacity-50;
 }
 
 .btn-primary {
-  @apply btn bg-stone-900 text-stone-50 hover:bg-stone-700;
+  @apply btn bg-rose-600 text-white shadow-sm hover:bg-rose-700;
 }
 
 .btn-secondary {
@@ -79,7 +82,7 @@ h3 {
 }
 
 .input {
-  @apply w-full rounded-md border border-stone-300 bg-surface px-3 py-2 text-sm
+  @apply w-full rounded-lg border border-stone-300 bg-surface px-3 py-2 text-sm
     focus:border-rose-500 focus:outline-none focus:ring-2 focus:ring-rose-100;
 }
 
@@ -88,12 +91,12 @@ h3 {
 }
 
 .badge {
-  @apply inline-block rounded px-1.5 py-0.5 font-mono text-[11px] font-medium leading-4;
+  @apply inline-block rounded-md px-1.5 py-0.5 text-[11px] font-semibold leading-4;
 }
 
-/* Small mono labels above sections: "01 / Describe", "Beta", and so on. */
+/* Small labels above sections: "Backends", "How it works", "Beta". */
 .eyebrow {
-  @apply font-mono text-[11px] uppercase tracking-[0.14em] text-stone-500;
+  @apply text-xs font-semibold uppercase tracking-[0.12em] text-rose-600;
 }
 
 /* The sliding stripe used by <ProgressBar indeterminate /> while we wait on

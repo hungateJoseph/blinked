@@ -73,27 +73,27 @@ export default function SampleBuild() {
         <ol className="space-y-4">
           {STEPS.map((s, i) => (
             <li key={s.title} className="grid gap-x-4 gap-y-1 sm:grid-cols-[1.5rem_1fr]">
-              <span className="font-mono text-sm text-stone-400">{i + 1}.</span>
+              <span className="text-sm font-semibold text-stone-400">{i + 1}.</span>
               <div className="space-y-1">
                 <div className="flex flex-wrap items-baseline gap-x-2 gap-y-1">
                   <span className="font-medium">{s.title}</span>
                   <span className="badge bg-rose-100 text-rose-800">{s.via}</span>
                   <span className="badge bg-stone-200 text-stone-700">{s.tier}</span>
                 </div>
-                <p className="font-mono text-sm text-stone-600">
+                <p className="text-sm text-stone-600">
                   {s.cost} <span className="text-stone-400">·</span> {s.time}
                 </p>
                 {s.recommendation && (
                   <p className="rounded-md bg-signal-soft px-3 py-2 text-sm text-stone-800">
                     <span className="font-medium">{s.recommendation.label}.</span> {s.recommendation.detail}{" "}
-                    <span className="font-mono text-stone-600">{s.recommendation.figures}</span>
+                    <span className="text-stone-600">{s.recommendation.figures}</span>
                   </p>
                 )}
               </div>
             </li>
           ))}
         </ol>
-        <p className="mt-4 border-t border-stone-200 pt-3 font-mono text-sm text-stone-700">
+        <p className="mt-4 border-t border-stone-200 pt-3 text-sm font-semibold text-stone-800">
           Roughly $16.30–$24.30 all-in · analysed in 14 s · charged 4¢
         </p>
       </Stage>
