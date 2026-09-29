@@ -13,6 +13,10 @@ const MARKS: Record<IntegrationId, { text: string; bg: string; fg: string }> = {
   payments: { text: "$", bg: "#635bff", fg: "#ffffff" },
   comms: { text: "sms", bg: "#0ea5e9", fg: "#ffffff" },
   automation: { text: "cron", bg: "#334155", fg: "#ffffff" },
+  varsitytutors: { text: "vt", bg: "#1a2b6d", fg: "#ffffff" },
+  preply: { text: "pr", bg: "#ff7a59", fg: "#ffffff" },
+  brighterly: { text: "br", bg: "#ffbf00", fg: "#1f2937" },
+  outschool: { text: "os", bg: "#7c3aed", fg: "#ffffff" },
 };
 
 export function BackendMark({ id, size = 40 }: { id: IntegrationId; size?: number }) {

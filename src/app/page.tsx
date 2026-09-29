@@ -43,7 +43,7 @@ const FEATURES = [
   {
     icon: "route",
     title: "Routed to real backends",
-    text: "Amazon, Instacart, AWS, Fiverr, TaskRabbit, payments, texting and scheduled checks, each with its sub-services named the way the vendor names them.",
+    text: "Amazon, Instacart, AWS, Fiverr, TaskRabbit, the four best-rated tutoring marketplaces, payments, texting and scheduled checks, each with its sub-services named the way the vendor names them.",
   },
   {
     icon: "swap",
@@ -68,6 +68,11 @@ const FEATURES = [
 ];
 
 const USES = [
+  {
+    title: "The PSAT push",
+    text: "The latest PSAT study books ordered for your son, and five reliable tutors texted to you with their bios, ratings and reviews.",
+    via: ["amazon", "varsitytutors", "comms"] as const,
+  },
   {
     title: "The hot wedding day",
     text: "Water to the venue if the forecast tips over, a text when it lands.",
@@ -232,8 +237,9 @@ function Landing() {
       <section className="space-y-8">
         <div className="max-w-2xl">
           <p className="eyebrow">Built for photographers first</p>
-          <h2 className="mt-2 text-3xl sm:text-4xl">Things a photographer actually asks for</h2>
+          <h2 className="mt-2 text-3xl sm:text-4xl">Things people actually ask for</h2>
         </div>
+        <ExamplePanel />
         <ul className="grid gap-4 sm:grid-cols-2">
           {USES.map((u) => (
             <li key={u.title} className="card flex items-start gap-4 p-5">
@@ -313,6 +319,49 @@ function HeroPanel() {
       <div className="mt-4 flex items-center justify-between border-t border-white/10 pt-3 text-sm">
         <span className="text-stone-400">$16.30–24.30 all-in · analysed in 14 s</span>
         <span className="rounded-md bg-rose-600 px-3 py-1.5 text-xs font-semibold text-white">Create agent</span>
+      </div>
+    </div>
+  );
+}
+
+/** A second worked request, on the light background: books ordered, tutors shortlisted, options texted. */
+function ExamplePanel() {
+  const rows = [
+    { id: "amazon", title: "Order the latest PSAT study books", via: "Amazon › Same-Day & Prime delivery", cost: "$45–70" },
+    { id: "varsitytutors", title: "Shortlist five reliable PSAT tutors", via: "Varsity Tutors › Tutor shortlist", cost: "no cost" },
+    { id: "comms", title: "Text you the five, with bios, ratings and reviews", via: "SMS", cost: "$0.05" },
+  ] as const;
+  return (
+    <div className="grid gap-6 rounded-2xl border border-stone-200 bg-surface p-5 shadow-sm md:grid-cols-[1fr_1.2fr] md:p-6">
+      <div>
+        <p className="text-xs font-semibold uppercase tracking-[0.12em] text-stone-500">Request</p>
+        <p className="mt-2 rounded-lg bg-stone-100 px-4 py-3 text-[15px] leading-relaxed text-stone-800">
+          Order my son the latest PSAT study books, find him a reliable tutor, and text me five options
+          with their bios, ratings and reviews.
+        </p>
+        <p className="mt-3 text-sm text-stone-600">
+          Tutors come from the four marketplaces parents rate highest: Varsity Tutors, Preply, Brighterly
+          and Outschool. The plan picks the one that fits the subject; here, PSAT prep.
+        </p>
+      </div>
+      <div>
+        <p className="text-xs font-semibold uppercase tracking-[0.12em] text-stone-500">Plan</p>
+        <ul className="mt-2 space-y-2">
+          {rows.map((r) => (
+            <li key={r.id} className="flex items-center gap-3 rounded-lg border border-stone-200 px-3 py-2.5">
+              <BackendMark id={r.id} size={30} />
+              <div className="min-w-0 flex-1">
+                <p className="truncate text-sm font-medium">{r.title}</p>
+                <p className="truncate text-xs text-stone-500">{r.via}</p>
+              </div>
+              <span className="text-xs font-semibold text-stone-700">{r.cost}</span>
+            </li>
+          ))}
+        </ul>
+        <div className="mt-3 rounded-lg bg-signal-soft px-3 py-2 text-xs text-stone-800">
+          <span className="font-semibold">Also on Preply.</span> Cheaper hourly rates for the same subject; the
+          plan offers the swap. <span className="font-semibold text-rose-700">Swap in</span>
+        </div>
       </div>
     </div>
   );

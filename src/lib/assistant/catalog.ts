@@ -310,6 +310,10 @@ export const INTEGRATION_IDS = [
   "payments",
   "comms",
   "automation",
+  "varsitytutors",
+  "preply",
+  "brighterly",
+  "outschool",
 ] as const;
 export type IntegrationId = (typeof INTEGRATION_IDS)[number];
 
@@ -373,6 +377,34 @@ export const INTEGRATIONS: Record<IntegrationId, IntegrationInfo> = {
     covers: "Texts, emails and phone calls — to you, to couples, to vendors.",
     example: "Want a text every 15 minutes with a delivery update? Supported.",
     tier: 1,
+  },
+  varsitytutors: {
+    name: "Varsity Tutors",
+    icon: "🎓",
+    covers: "The largest US tutor pool: K-12 subjects and SAT, ACT and PSAT prep, one-to-one or in small groups.",
+    example: "Want five vetted PSAT tutors with their bios, ratings and reviews texted to you? That's a Varsity Tutors search.",
+    tier: 2,
+  },
+  preply: {
+    name: "Preply",
+    icon: "🗣️",
+    covers: "One-to-one tutors you pick from profiles, strongest for languages, with the highest parent rating of the marketplaces.",
+    example: "Want a Spanish tutor for Tuesday evenings, shortlisted by rating and price? Preply.",
+    tier: 2,
+  },
+  brighterly: {
+    name: "Brighterly",
+    icon: "➗",
+    covers: "K-8 math with a matched tutor and a set curriculum; parents rate the tutors themselves 4.5 of 5.",
+    example: "Want a patient math tutor for a fourth grader, matched rather than searched for? Brighterly.",
+    tier: 2,
+  },
+  outschool: {
+    name: "Outschool",
+    icon: "🧑‍🏫",
+    covers: "Small-group live classes for kids on almost any subject, from coding to creative writing.",
+    example: "Want a weekly small-group class that keeps a curious ten-year-old busy? Outschool.",
+    tier: 2,
   },
   automation: {
     name: "Scheduled checks",
@@ -466,6 +498,25 @@ export const SPECIALTIES = [
   { id: "taskrabbit.crafts", integration: "taskrabbit", name: "Arts / Crafts, Sewing, Cooking / Baking", covers: "Dress repairs on the day, craft and food help.", typical: "$30–$70 an hour" },
   { id: "taskrabbit.admin", integration: "taskrabbit", name: "Data Entry, Office Administration, Computer Help", covers: "Desk work and project coordination by a Tasker.", typical: "$25–$60 an hour" },
   { id: "taskrabbit.car", integration: "taskrabbit", name: "Car Washing & Laundry Help", covers: "The getaway car and the linens.", typical: "$35–$60 an hour" },
+
+  // Varsity Tutors
+  { id: "varsitytutors.testprep", integration: "varsitytutors", name: "SAT, ACT & PSAT prep", covers: "One-to-one test prep with a vetted tutor; the parents of exam-prepping high schoolers are the platform's happiest customers.", typical: "$70–$120 an hour; packages from about $500", featured: true },
+  { id: "varsitytutors.k12", integration: "varsitytutors", name: "K-12 subject tutoring", covers: "Math, science, English and languages, matched to the student's grade and school.", typical: "$60–$100 an hour", featured: true },
+  { id: "varsitytutors.shortlist", integration: "varsitytutors", name: "Tutor shortlist", covers: "Five tutors for a subject with bios, ratings, reviews and availability, ready to compare.", typical: "no charge to search; the first session is the cost", featured: true },
+  { id: "varsitytutors.group", integration: "varsitytutors", name: "Small-group classes", covers: "Live classes of a handful of students for a subject or exam.", typical: "$20–$40 a class" },
+
+  // Preply
+  { id: "preply.language", integration: "preply", name: "Language tutors", covers: "Spanish, French, Mandarin and forty more, chosen from tutor profiles with trial lessons.", typical: "$15–$40 an hour; a trial lesson from about $10", featured: true },
+  { id: "preply.academic", integration: "preply", name: "School subjects", covers: "Math, science and writing tutors, filtered by price, rating and time zone.", typical: "$20–$50 an hour", featured: true },
+  { id: "preply.shortlist", integration: "preply", name: "Tutor shortlist", covers: "Five tutors matching a subject, budget and schedule, with ratings and reviews.", typical: "no charge to search", featured: true },
+
+  // Brighterly
+  { id: "brighterly.math", integration: "brighterly", name: "K-8 math, matched tutor", covers: "A tutor matched to the child after a free assessment, following a set curriculum.", typical: "$25–$45 a lesson on a plan", featured: true },
+  { id: "brighterly.assessment", integration: "brighterly", name: "Free assessment lesson", covers: "A first lesson that places the child and proposes a plan.", typical: "free", featured: true },
+
+  // Outschool
+  { id: "outschool.classes", integration: "outschool", name: "Small-group live classes", covers: "Ongoing or one-off classes on academic and enrichment topics, taught live to a small group.", typical: "$10–$30 a class", featured: true },
+  { id: "outschool.oneonone", integration: "outschool", name: "One-to-one tutoring", covers: "Private sessions with an Outschool teacher.", typical: "$30–$60 an hour", featured: true },
 ] as const satisfies readonly Specialty[];
 
 export type SpecialtyId = (typeof SPECIALTIES)[number]["id"];
